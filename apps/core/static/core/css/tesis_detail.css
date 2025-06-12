@@ -1,0 +1,81 @@
+/* --- Fuentes y Variables (Tu toque personal) --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+
+:root {
+    --tesis-primary-color: #283593; /* Azul de marca */
+    --tesis-light-gray: #f4f6f8;   /* Color de fondo */
+}
+
+/* --- Estilos Globales (Personalizado) --- */
+body {
+    background-color: var(--tesis-light-gray);
+    font-family: 'Segoe UI', 'Montserrat';
+}
+
+/* --- Estilos Específicos de Componentes --- */
+
+/* La tarjeta: Bootstrap pone la base, nosotros añadimos la estética */
+.tesis-card {
+    background-color: #fff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px H20px rgba(0, 0, 0, 0.08); /* Sombra personalizada */
+}
+
+/* Tipografía: Ajustes finos sobre los estilos de Bootstrap */
+.tesis-title {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.section-title {
+    font-weight: 700;
+}
+
+/* Badge de Carrera: Extendemos la clase .badge de Bootstrap */
+.tesis-carrera-badge {
+    background-color: var(--tesis-primary-color);
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.5em 1.2em;
+}
+
+/* Botón de Descarga: Extendemos la clase .btn de Bootstrap */
+.tesis-download-btn {
+    background-color: var(--tesis-primary-color);
+    color: #fff;
+    border: none;
+    padding: 0.75rem 2rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.tesis-download-btn:hover {
+    background-color: #1A237E; /* Tono más oscuro personalizado */
+    color: #fff;
+}
+
+/* Palabras Clave: Un componente 100% nuestro, pues no existe en Bootstrap */
+.keyword-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    font-size: 0.9rem;
+    color: #333;
+    background-color: #f0f0f0; /* Un gris un poco más notorio */
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    margin: 0 8px 8px 0;
+}
+
+#backButton {
+    position: absolute;
+    top: 30px;
+    left: 15px;
+    z-index: 100;
+}
+
+#backButton img {
+    width: 30px;
+    height: auto;
+    display: block;
+}

@@ -1,0 +1,18 @@
+{# Título de la tesis #}
+{{ object.titulo }}
+
+{# Resumen de la tesis #}
+{{ object.resumen }}
+
+{# Palabras clave relacionadas #}
+{% for tc in object.tesispalabrasclave_set.all %}
+{{ tc.palabras_clave.palabra }}
+{% endfor %}
+
+{# Nombres de los autores #}
+{% for ta in object.tesisautores_set.all %}
+{{ ta.autor.nombres }} {{ ta.autor.apellidos }}
+{% endfor %}
+
+{# Nombre de la carrera #}
+{{ object.carrera.nombre }}
