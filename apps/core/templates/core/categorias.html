@@ -1,0 +1,75 @@
+{% extends 'core/dashboard.html' %}
+{% load static %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'core/css/categorias_styles.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Gestión de Categorías</h1>
+    </div>
+
+    <!-- Sección para Agregar Nueva Categoría -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h2 class="h5 mb-0">Agregar Nueva Categoría</h2>
+            <p class="text-muted">Complete la información para crear una nueva categoría</p>
+        </div>
+        <div class="card-body">
+            <form method="post" action="{% url 'categorias' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_nombre">Nombre de la Categoría</label>
+                    <input type="text" class="form-control" id="id_nombre" name="nombre" placeholder="Ej: Ingeniería de Sistemas" required>
+                </div>
+                <div class="form-group">
+                    <label for="id_descripcion">Descripción</label>
+                    <textarea class="form-control" id="id_descripcion" name="descripcion" rows="3" placeholder="Breve descripción de la categoría"></textarea>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-secondary mr-2">Cancelar</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sección de Categorías Existentes -->
+    <div class="card">
+        <div class="card-header">
+            <h2 class="h5 mb-0">Categorías Existentes</h2>
+            <p class="text-muted">Lista de categorías disponibles para clasificar las tesis</p>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for categoria in categorias %}
+                        <tr>
+                            <td>{{ categoria.nombre }}</td>
+                            <td>{{ categoria.descripcion }}</td>
+
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="2">No hay categorías existentes.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}

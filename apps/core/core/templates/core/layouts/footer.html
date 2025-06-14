@@ -1,0 +1,42 @@
+{% extends 'core/layouts/base.html' %}
+{% load static %}
+
+{% block footer %}
+
+<style>
+    .acerca-repositorio .card h4 {
+        color: black;
+    }
+</style>
+
+{% block navbar %}
+{% endblock navbar %}
+    
+<section class="acerca-repositorio">
+    <h2>Acerca del Repositorio</h2>
+    <div class="cards-container d-flex gap-4">
+        <div class="card acceso-conocimiento">
+            <i class="fa-solid fa-book-open"></i>
+            <i class="bi bi-book"></i>
+            <h4>Acceso a Conocimiento</h4>
+            <p>Accede a investigaciones académicas de alta calidad en diversas áreas de ingeniería.</p>
+        </div>
+        <div class="card busqueda-avanzada">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="bi bi-search"></i>
+            <h4>Búsqueda Avanzada</h4>
+            <p>Encuentra fácilmente los trabajos de investigación por categoría, autor o palabras clave.</p>
+        </div>
+        <div class="card descarga-inmediata">
+            <i class="fa-solid fa-file-arrow-down"></i>
+            <i class="bi bi-file-earmark-text"></i>
+            <h4>Descarga Inmediata</h4>
+            <p>Descarga los documentos completos en formato PDF para su consulta offline.</p>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <p>&copy; 2025 SAPIENT UNEFA. Todos los derechos reservados.</p>
+</footer>
+ {% endblock footer %}

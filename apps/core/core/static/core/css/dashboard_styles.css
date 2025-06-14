@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+
+/* Estilos generales para el cuerpo de la página */
+body, html {
+    font-family: 'Montserrat','Segoe UI';
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+/* Estilos base para la barra lateral (sidebar) */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: white;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+    z-index: 1002;
+    transition: width 0.3s ease-in-out;
+}
+/* Cabecera del sidebar, donde va el logo */
+.sidebar-header {
+    height: 70px; 
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centra el logo ahora que el botón se fue */
+    padding: 0 10px; /* Un poco de padding para el logo */
+    box-sizing: border-box;
+    border-bottom: 1px solid #eee; 
+}
+/* Estilo general para el botón de despliegue del sidebar */
+.sidebar-toggle-btn {
+    background: none;
+    border: none;
+    color: #333;
+    padding: 5px;
+    cursor: pointer;
+}
+/* Estilos específicos para el botón de despliegue cuando está en la barra de navegación superior */
+.navbar-sidebar-toggler {
+    font-size: 1.5rem;
+    margin-left: 15px;
+    margin-right: 5px;
+}
+/* Estilos para la imagen del logo en el sidebar */
+.sidebar-header img#sidebarLogo {
+    max-height: 140px; 
+    max-width: 200px; 
+    transition: all 0.3s ease-in-out;
+    margin-top: 80px;
+}
+/* Estilos para la lista de navegación dentro del sidebar */
+.sidebar .nav {
+    margin-top: 80px; 
+}
+/* Estilos para los enlaces de navegación en el sidebar */
+.sidebar .nav-link {
+    padding: 15px 20px;
+    color: #333;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    white-space: nowrap; 
+}
+/* Estilos para los iconos dentro de los enlaces de navegación del sidebar */
+.sidebar .nav-link i {
+    margin-right: 12px;
+    font-size: 1.2rem;
+    width: 24px; 
+    text-align: center;
+    transition: margin-right 0.3s ease-in-out, font-size 0.3s ease-in-out;
+}
+/* Estilos para el texto dentro de los enlaces de navegación del sidebar */
+.sidebar .nav-link .nav-link-text {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+/* Estilo para el estado hover (cursor encima) de los enlaces de navegación del sidebar */
+.sidebar .nav-link:hover {
+    background-color: transparent; 
+    color: #333; 
+}
+/* Transiciones para el contenido principal y la barra de navegación superior al colapsar/expandir el sidebar */
+.main-content, .navbar {
+    transition: margin-left 0.3s ease-in-out, left 0.3s ease-in-out, width 0.3s ease-in-out;
+}
+/* Estilos para el contenedor del contenido principal de la página */
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+/* Estilos para la sección de cabecera principal (con imagen de fondo) */
+.header-container {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/Unefa.jpeg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 180px 20px;
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-bottom: 30px;
+}
+/* Título principal en la cabecera */
+.header-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+/* Subtítulo en la cabecera */
+.header-subtitle {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+/* Título para la sección de trabajos recientes */
+.recent-works-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+/* Estilos personalizados para las tarjetas (cards) */
+.card.card-custom {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/* Efecto hover para las tarjetas */
+.card-animacion:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Etiqueta para la carrera en la esquina superior derecha de la tarjeta */
+.card-header-tag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: .3rem .6rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+    font-family: 'Montserrat','Segoe UI';
+    border-radius: .25rem;
+    z-index: 1;
+}
+/* Cuerpo de la tarjeta */
+.card-body {
+    padding: 20px; /* Reducimos padding-bottom para menor altura */
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+/* Título de la tesis dentro de la tarjeta (con truncamiento de texto) */
+.card-title {
+    font-weight: bold;
+    margin-bottom: 18px; /* Aumentamos el margen inferior para mayor separación */
+    /* Estilos para truncar el título a un número de líneas (ej. 3 líneas) */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+/* Texto general dentro de la tarjeta (autores, fecha) */
+.card-text {
+    color: #666;
+    margin-bottom: 12px; /* Aumentamos el margen inferior para mayor separación */
+}
+/* Estilo específico para el último texto antes del indicador PDF, para asegurar espaciado */
+.card-text.card-text-last {
+    margin-bottom: 10px; /* Reducimos margen inferior para acercar el PDF */
+}
+/* Indicador visual de PDF en la esquina inferior derecha de la tarjeta */
+.pdf-indicator {
+    position: absolute;
+    bottom: 1px; /* Ajustamos para el nuevo padding-bottom del card-body */
+    right: 15px; /* Ajustado para simetría con el 'bottom' */
+    display: inline-flex;
+    align-items: center;
+    font-weight: 500;
+    color: #6c757d;
+}
+/* Colores de fondo para las etiquetas de carrera */
+.ingenieria-electronica {
+    background-color: #e3f2fd;
+}
+.ingenieria-civil {
+    background-color: #e8f5e9;
+}
+.ingenieria-informatica {
+    background-color: #fff3e0;
+}
+/* Estilos para la barra de navegación superior */
+.navbar {
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    left: 250px;
+    width: calc(100% - 250px);
+    top: 0;
+    z-index: 1001;
+}
+
+/* Contenedor de los enlaces de navegación en la barra superior (para alinearlos a la derecha) */
+.navbar .navbar-nav {
+    margin-left: auto;
+}
+/* Estilos para los enlaces (botones Iniciar/Cerrar Sesión) en la barra de navegación superior */
+.navbar .nav-link {
+    color: #333;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
+    text-decoration: none;
+    background-color: transparent;
+    transition: none;
+}
+/* Estado hover para los enlaces de la barra de navegación superior (sin cambios visuales) */
+.navbar .nav-link:hover {
+    color: #333;
+    background-color: transparent;
+}
+
+/* --- Estilos para el Sidebar en estado Colapsado --- */
+/* Ancho del sidebar cuando está colapsado */
+.sidebar.collapsed {
+    width: 80px;
+}
+/* Cabecera del sidebar colapsado (logo centrado) */
+.sidebar.collapsed .sidebar-header {
+    padding: 0;
+    justify-content: center;
+}
+/* Logo en el sidebar colapsado (más pequeño) */
+.sidebar.collapsed img#sidebarLogo {
+    max-height: 30px; 
+    max-width: 60px; 
+    width: auto;
+}
+/* Enlaces de navegación en el sidebar colapsado (iconos centrados) */
+.sidebar.collapsed .nav-link {
+    justify-content: center;
+    padding: 15px 10px;
+}
+/* Iconos en los enlaces de navegación del sidebar colapsado (más grandes, sin margen derecho) */
+.sidebar.collapsed .nav-link i {
+    margin-right: 0;
+    font-size: 1.5rem; 
+}
+/* Texto de los enlaces de navegación en el sidebar colapsado (oculto) */
+.sidebar.collapsed .nav-link .nav-link-text {
+    opacity: 0;
+    display: none;
+}
+/* Ajuste del margen izquierdo del contenido principal cuando el sidebar está colapsado */
+body.sidebar-collapsed .main-content {
+    margin-left: 80px;
+}
+/* Ajuste de la posición y ancho de la barra de navegación superior cuando el sidebar está colapsado */
+body.sidebar-collapsed .navbar {
+    left: 80px;
+    width: calc(100% - 80px);
+}
+
+/* 1. Estilo para el enlace que envuelve toda la tarjeta */
+a.card-link {
+    text-decoration: none !important; /* ¡Esto quita el subrayado de todo! */
+    color: inherit;                  /* Hace que el texto herede su color normal (negro, gris, etc.) y no sea azul */
+}
