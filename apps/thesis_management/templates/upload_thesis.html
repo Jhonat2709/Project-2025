@@ -1,0 +1,12 @@
+{% load static %}
+
+<form id="formulario_tesis" method="POST" action="{% url "upload_thesis" %}" enctype="multipart/form-data">
+  {% csrf_token %}
+    {{ form.as_p }}
+        <h3>Autores</h3>
+        <div id="autores-container">
+        </div>
+      <button type="button" id="add-autor-btn">Añadir otro autor</button>
+  <button type="submit">Cargar</button>
+</form>
+<script type="module" src="{% static 'js/forms.js' %}"></script>

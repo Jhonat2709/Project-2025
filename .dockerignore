@@ -1,0 +1,15 @@
+.gitignore
+.venv/
+LICENSE
+*.pyc
+__pycache__/
+staticfiles/
+README.md
+migrations/
+!migrations/__init__.py
+media/
+server/
+doc/
+db.sqlite3
+build.sh
+.env

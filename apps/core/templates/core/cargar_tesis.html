@@ -1,0 +1,64 @@
+{% extends 'core/dashboard.html' %}
+{% load static %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'core/css/cargar_tesis_styles.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1>Cargar Nueva Tesis</h1>
+    <p>Complete la información y suba el archivo PDF de la tesis</p>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                <label for="id_titulo">Título de la Tesis</label>
+                {{ tesis_form.titulo }}
+            </div>
+            <div class="col-md-6">
+                <label for="id_carrera">Categoría</label>
+                {{ tesis_form.carrera }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="id_autores">Autores</label>
+            <input type="text" name="autores_nombres" id="id_autores" class="form-control" placeholder="Nombres de los autores (separados por comas)">
+        </div>
+
+            <div class="form-group">
+                <label for="id_numero_paginas">Número de Páginas</label>
+                <input type="number" class="form-control" id="id_numero_paginas" name="numero_paginas" placeholder="Ingrese el número de páginas">
+            </div>
+
+
+
+        <div class="form-group">
+            <label for="id_palabras_clave">Palabras Clave</label>
+            <input type="text" name="palabras_clave_palabra" id="id_palabras_clave" class="form-control" placeholder="Palabras clave separadas por comas">
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="id_resumen">Resumen</label>
+                    {{ tesis_form.resumen }}
+                    <p class="form-text text-muted">El sistema extraerá automáticamente el resumen del documento, pero puede editarlo aquí.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="id_documento">Archivo PDF</label>
+            {{ tesis_form.documento }}
+            <small class="form-text text-muted">Haga clic para seleccionar un archivo PDF (máx. 50MB)</small>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Cargar Documento</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}

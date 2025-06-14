@@ -1,0 +1,54 @@
+/* Estilos específicos para la sección de búsqueda (home.html) */
+
+/* Formulario de Búsqueda */
+.input-group .form-control {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-right: none; /* Eliminar borde derecho para que se fusione con el ícono */
+}
+
+.input-group-text {
+    background-color: #f0f2f5; /* Un gris más claro para el fondo del icono */
+    border: 1px solid #ced4da;
+    border-left: none; /* Eliminar borde izquierdo */
+    border-radius: 0.25rem; /* Heredar border-radius de Bootstrap */
+    padding: 0.375rem 0.75rem; /* Ajustar padding si es necesario */
+    color: #495057; /* Color del icono */
+}
+
+/* Ajuste para el dropdown de categorías */
+.form-select {
+    border-radius: 0.25rem; /* Mantener bordes redondeados por defecto de Bootstrap */
+    padding: 0.5rem 1rem; /* Ajustar padding para que coincida con el input */
+}
+
+/* Colores específicos para las etiquetas de carrera en las tarjetas de resultados de búsqueda */
+.card-header-tag.ingenieria-electronica { background-color: #28a745; } /* Verde */
+.card-header-tag.ingenieria-civil { background-color: #007bff; } /* Azul */
+.card-header-tag.ingenieria-informatica { background-color: #dc3545; } /* Rojo */
+.card-header-tag.ingenieria-industrial { background-color: #ffc107; color: #333;} /* Amarillo */
+.card-header-tag.ingenieria-mecanica { background-color: #6f42c1; } /* Púrpura */
+
+/* Paginación */
+.pagination .page-item .page-link {
+    border-radius: 0.25rem; /* Ligeros bordes redondeados */
+    margin: 0 3px; /* Pequeño espacio entre los números */
+    color: var(--tesis-primary-color);
+    border-color: #dee2e6;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--tesis-primary-color);
+    border-color: var(--tesis-primary-color);
+    color: white;
+}
+
+.pagination .page-item .page-link:hover {
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+/* Ajustes para el título "Resultados" */
+h3.recent-works-title {
+    margin-top: 30px; /* Espacio antes del título de resultados */
+}

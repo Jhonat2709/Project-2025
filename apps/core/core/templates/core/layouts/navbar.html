@@ -1,0 +1,53 @@
+{% extends 'core/layouts/footer.html' %}
+{% block navbar %}
+{% load static %}
+<!-- Barra de navegación principal -->
+<nav class="navbar navbar-expand-lg navbar-light">
+    <!-- Botón para mostrar/ocultar la barra lateral en dispositivos móviles -->
+    <button id="sidebarToggle" class="sidebar-toggle-btn navbar-sidebar-toggler"><i class="bi bi-window-sidebar"></i></button>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'dashboard' %}">
+        </a>
+        <!-- Sección de enlaces de navegación alineados a la derecha -->
+        <div class="navbar-nav ms-auto">
+            {% if user.is_authenticated %}
+            <!-- Enlace para cerrar sesión si el usuario está autenticado -->
+            <a class="nav-link" href="{% url 'logout' %}">
+                <i class="bi bi-box-arrow-right me-1"></i>Cerrar Sesión
+            </a>
+            {% else %}
+            <!-- Enlace para iniciar sesión si el usuario no está autenticado -->
+            <a class="nav-link" href="{% url 'login' %}">
+                <i class="bi bi-box-arrow-in-right me-1"></i>Iniciar Sesión
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+<div class="sidebar">
+    <!-- Cabecera de la barra lateral con el logo -->
+    <div class="sidebar-header">
+        <a href="{% url 'dashboard' %}">
+            <img src="{% static 'core/images/Logo.png' %}" alt="Sapient UNEFA Logo" id="sidebarLogo">
+        </a>
+    </div>
+    <!-- Lista de navegación de la barra lateral -->
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'dashboard' %}">
+                <i class="bi bi-house-door"></i> <span class="nav-link-text">Inicio</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="bi bi-search"></i> <span class="nav-link-text">Buscar</span>
+            </a>
+        </li>
+        
+    </ul>
+</div>
+<!-- Contenedor principal del contenido de la página -->
+<div class="main-content">
+{% block main %}
+{% endblock main %}
+{% endblock navbar %}

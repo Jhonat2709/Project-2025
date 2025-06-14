@@ -1,0 +1,129 @@
+{% extends 'core/layouts/base.html' %}
+{% load static %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'core/css/search_styles.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4" style="margin-top: 75px;">Buscar Tesis</h2>
+
+    <form method="get" action="{% url 'haystack_search' %}" class="mb-5">
+        <div class="row g-2 align-items-center">
+            <div class="col-md-7">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                    <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Buscar tesis, autor, palabra clave...">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <select class="form-select" name="carrera">
+                    <option value="">Todas las categorías</option>
+                    {% for carrera_obj in carreras %}
+                        <option value="{{ carrera_obj.id }}" {% if carrera_obj.id|stringformat:"s" == request.GET.carrera %}selected{% endif %}>{{ carrera_obj.nombre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100" style="background-color: var(--tesis-primary-color);">Buscar</button>
+            </div>
+        </div>
+    </form>
+
+    {% if page_obj.object_list %}
+        <h3 class="recent-works-title">Resultados ({{ page_obj.paginator.count }}):</h3>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for result in page_obj.object_list %}
+            <div class="col">
+                <a class="card-link" href="{% url 'tesis_detail' result.object.id %}">
+                    <div class="card card-animacion card-custom h-100">
+                        {% if result.object.carrera.nombre == 'Ingeniería Electrónica' %}
+                        <div class="card-header-tag ingenieria-electronica">{{ result.object.carrera.nombre }}</div>
+                        {% elif result.object.carrera.nombre == 'Ingeniería Civil' %}
+                        <div class="card-header-tag ingenieria-civil">{{ result.object.carrera.nombre }}</div>
+                        {% elif result.object.carrera.nombre == 'Ingeniería Informática' %}
+                        <div class="card-header-tag ingenieria-informatica">{{ result.object.carrera.nombre }}</div>
+                        {% else %}
+                        <div class="card-header-tag">{{ result.object.carrera.nombre }}</div>
+                        {% endif %}
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{ result.object.titulo }}</h5>
+                            <p class="card-text">
+                                <i class="bi bi-people-fill me-2"></i>
+                                {% with autores_list=result.object.tesisautores_set.all %}
+                                {% for ta in autores_list %}{{ ta.autor.nombres }} {{ ta.autor.apellidos }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                                {% endwith %}
+                            </p>
+                            <p class="card-text card-text-last">
+                                <i class="bi bi-calendar-event me-2"></i>{{ result.object.fecha_publicacion|date:"d/m/Y" }}
+                            </p>
+                            <span class="pdf-indicator">
+                                <i class="bi bi-file-earmark-pdf-fill me-1"></i>PDF
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if page_obj.paginator.num_pages > 1 %}
+        <nav aria-label="Page navigation" class="mt-5">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?q={{ query }}&page={{ page_obj.previous_page_number }}{% if request.GET.carrera %}&carrera={{ request.GET.carrera }}{% endif %}">Anterior</a></li>
+                {% endif %}
+                {% for i in page_obj.paginator.page_range %}
+                    <li class="page-item {% if page_obj.number == i %}active{% endif %}">
+                        <a class="page-link" href="?q={{ query }}&page={{ i }}{% if request.GET.carrera %}&carrera={{ request.GET.carrera }}{% endif %}">{{ i }}</a>
+                    </li>
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?q={{ query }}&page={{ page_obj.next_page_number }}{% if request.GET.carrera %}&carrera={{ request.GET.carrera }}{% endif %}">Siguiente</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    {% elif query %}
+        <div class="alert alert-info text-center" role="alert">
+            No se encontraron resultados para "{{ query }}".
+        </div>
+    {% else %}
+        <div class="row row-cols-1 row-cols-md-3 g-2">
+            {% for tesis in ultima_tesis_carrera %}
+            <div class="col">
+                <a class="card-link" href="{% if tesis.id_tesis %}{% url 'tesis_detail' tesis.id_tesis %}{% else %}#{% endif %}">
+                    <div class="card card-animacion card-custom h-100">
+                        {% if tesis.carrera == 'Ingeniería Electrónica' %}
+                        <div class="card-header-tag ingenieria-electronica">{{ tesis.carrera }}</div>
+                        {% elif tesis.carrera == 'Ingeniería Civil' %}
+                        <div class="card-header-tag ingenieria-civil">{{ tesis.carrera }}</div>
+                        {% elif tesis.carrera == 'Ingeniería Informática' %}
+                        <div class="card-header-tag ingenieria-informatica">{{ tesis.carrera }}</div>
+                        {% else %}
+                        <div class="card-header-tag">{{ tesis.carrera }}</div>
+                        {% endif %}
+                        
+                        <div class="card-body">
+                            <h5 class="card-title">{{ tesis.titulo }}</h5>
+                            <p class="card-text"><i class="bi bi-people-fill me-2"></i>{{ tesis.autores }}</p>
+                            <p class="card-text card-text-last"><i class="bi bi-calendar-event me-2"></i>{{ tesis.fecha_publicacion|date:"d/m/Y" }}</p>
+                            <span class="pdf-indicator">
+                                <i class="bi bi-file-earmark-pdf-fill me-1"></i>PDF
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p>No hay tesis disponibles en este momento.</p>
+            <p>Por favor, asegúrate de que hay tesis y carreras registradas en la base de datos.</p>
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
