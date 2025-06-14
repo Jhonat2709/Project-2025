@@ -1,6 +1,6 @@
-from .files_processor.extract_data import request_thesis_data
 from django.urls import path
 from . import views
+from .files_processor.extract_data import request_thesis_data
 
 urlpatterns = [
     path("process_file/", request_thesis_data, name="request_thesis_data"),

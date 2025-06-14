@@ -56,9 +56,13 @@
             <small class="form-text text-muted">Haga clic para seleccionar un archivo PDF (máx. 50MB)</small>
         </div>
 
-        <button type="submit" class="btn btn-primary">Cargar Documento</button>
+        <button type="submit" class="btn btn-primary" id="submit-button">Cargar Documento</button>
     </form>
 </div>
 {% endblock %}
 
 {% block footer %}{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'core/js/cargar_tesis_ia.js' %}"></script>
+{% endblock extra_js %}

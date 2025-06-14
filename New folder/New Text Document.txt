@@ -1,0 +1,1 @@
+Solo me deja cargar una tesis por cada categoria, cuando me deberia de dejar sin importar las categorias, cargar la tesis respectivamente y me salga en trabajos recientes. Además, muestra un mensaje de alerta con js de que la tesis se cargó correctamente

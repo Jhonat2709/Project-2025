@@ -23,7 +23,7 @@ def request_thesis_data(request):
                 {
                     "role": "system",
                     "content": """
-                    The user will provide some text of a thesis in spanish. Please parse the "resumen", "palabras clave" (capitalized), "autor" (capitalized) and "titulo" and output them in JSON format. 
+                    The user will provide some text of a thesis in spanish. Please parse the "resumen", "palabras clave" (capitalized), "autor" (capitalized), "titulo" and "numero_paginas" and output them in JSON format. 
 
                     EXAMPLE INPUT: 
                     *.pdf content*
@@ -64,22 +64,7 @@ def request_thesis_data(request):
         json_response = chat.choices[0].message.content
         data = json.loads(json_response)
 
-        data["paginas"] = num_pages
+        data["numero_paginas"] = num_pages
         return JsonResponse(data, json_dumps_params={'ensure_ascii':False})
-        """
-        return JsonResponse(
-                {
-                    "titulo": "Jaja se te acabó la API",
-                    "autor": [
-                        {"Nombre": "Hernan", "Apellido": "Gonzalez"},
-                        {"Nombre": "Lionel", "Apellido": "Messi"},
-                    ],
-                    "palabras clave": ["Ludwing", "traga", "trabas"],
-                    "resumen": "no weno  pues, me jodí",
-                    "success": "true",
-                    "paginas": 10,
-                }
-            )
-        """
     except Exception as e:
         return JsonResponse({"sucess": False,"message": str(e)})
